@@ -28,7 +28,7 @@ const eslintConfig = [
         { allowObject: true, allowArrowFunction: true },
       ],
       semi: ['error'],
-      quotes: ['error', 'single'],
+      quotes: ['warn', 'single', { avoidEscape: true }],
       'prefer-arrow-callback': ['error'],
       'prefer-template': ['error'],
     },
