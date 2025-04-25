@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import '@/styles/globals.css';
 import { ThemeProvider } from '@/providers/theme-provider';
 import { Header } from '@/components/layout/header';
+import { Toaster } from 'sonner';
 
 export const metadata: Metadata = {
   title: 'Crud Next.js Localstorage',
@@ -24,6 +25,7 @@ export default function RootLayout({
         >
           <Header />
           {children}
+          <Toaster />
         </ThemeProvider>
       </body>
     </html>

@@ -23,6 +23,7 @@ import {
 } from '../ui/select';
 import { v4 as uuidv4 } from 'uuid';
 import { TaskProps } from '@/app/page';
+import { toast } from 'sonner';
 
 type TaskButtonProps = {
   buttonName: string;
@@ -61,6 +62,13 @@ export function TaskFormButton({
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
+    if (!taskName.trim() || !taskDescription.trim() || !taskImportance.trim()) {
+      return toast.warning('Preencha todos os campos!', {
+        description: 'Todos os campos são obrigatórios.',
+        className: '!bg-red-300 !border-none',
+      });
+    }
 
     const updatedTask = {
       id: task?.id || uuidv4(),
