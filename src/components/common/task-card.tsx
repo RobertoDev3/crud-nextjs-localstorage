@@ -5,9 +5,10 @@ import {
   CardHeader,
   CardTitle,
 } from '../ui/card';
-import { Button } from '../ui/button';
 import { Badge } from '../ui/badge';
 import { ConfirmModal } from './confirm-modal';
+import { TaskFormButton } from './task-form-button';
+import { TaskProps } from '@/app/page';
 
 type TaskCardProps = {
   id: string;
@@ -15,6 +16,7 @@ type TaskCardProps = {
   description: string;
   importance: string;
   onDelete: (id: string) => void;
+  onEdit: (task: TaskProps) => void;
 };
 
 export function TaskCard({
@@ -23,6 +25,7 @@ export function TaskCard({
   description,
   importance,
   onDelete,
+  onEdit,
 }: TaskCardProps) {
   return (
     <Card className='h-80 w-72 rounded-md'>
@@ -40,7 +43,13 @@ export function TaskCard({
       </CardHeader>
       <CardContent className='flex-1'>{description}</CardContent>
       <CardFooter className='justify-end gap-4'>
-        <Button>Editar</Button>
+        <TaskFormButton
+          onSave={updatedTask => onEdit(updatedTask)}
+          buttonName='Editar'
+          title='Editar tarefa'
+          description='Edite os detalhes da tarefa selecionada.'
+          task={{ id, name, description, importance }}
+        />
         <ConfirmModal
           variant='destructive'
           nameButton='Deletar'

@@ -1,8 +1,9 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { CreateTaskButton } from '@/components/common/create-task-button';
+import { TaskFormButton } from '@/components/common/task-form-button';
 import { TaskCard } from '@/components/common/task-card';
+import { buttonVariants } from '@/components/ui/button';
 
 export type TaskProps = {
   id: string;
@@ -21,8 +22,20 @@ export default function Home() {
 
   return (
     <main className='mx-auto flex max-w-7xl flex-col gap-4 p-4'>
-      <section className='bg-accent flex justify-end rounded-md p-4'>
-        <CreateTaskButton
+      <section className='bg-accent flex items-center justify-between rounded-md p-4'>
+        <p
+          className={buttonVariants({
+            variant: 'outline',
+            className:
+              'hover:bg-background hover:dark:bg-input/30 cursor-none !shadow-none',
+          })}
+        >
+          Tarefas: {tasks.length}
+        </p>
+        <TaskFormButton
+          buttonName='Criar Tarefa'
+          title='Criar nova tarefa'
+          description='Crie suas tarefas e organize seu trabalho de forma eficiente.'
           onSave={(newTask: TaskProps) => {
             const updatedTasks = [...tasks, newTask];
             localStorage.setItem('tasks', JSON.stringify(updatedTasks));
@@ -38,8 +51,15 @@ export default function Home() {
             name={task.name}
             description={task.description}
             importance={task.importance}
-            onDelete={() => {
-              const updatedTasks = tasks.filter(t => t.id !== task.id);
+            onEdit={updatedTask => {
+              const updatedTasks = tasks.map(task =>
+                task.id === updatedTask.id ? updatedTask : task,
+              );
+              localStorage.setItem('tasks', JSON.stringify(updatedTasks));
+              setTasks(updatedTasks);
+            }}
+            onDelete={(id: string) => {
+              const updatedTasks = tasks.filter(t => t.id !== id);
               localStorage.setItem('tasks', JSON.stringify(updatedTasks));
               setTasks(updatedTasks);
             }}

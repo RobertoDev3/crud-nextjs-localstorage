@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Button } from '@/components/ui/button';
 import {
   Dialog,
@@ -24,51 +24,77 @@ import {
 import { v4 as uuidv4 } from 'uuid';
 import { TaskProps } from '@/app/page';
 
-export function CreateTaskButton({
-  onSave,
-}: {
+type TaskButtonProps = {
+  buttonName: string;
+  title: string;
+  description: string;
   onSave: (task: TaskProps) => void;
-}) {
-  const [open, setOpen] = useState(false);
+  task?: TaskProps;
+};
+
+export function TaskFormButton({
+  onSave,
+  buttonName,
+  description,
+  title,
+  task,
+}: TaskButtonProps) {
+  const [openModal, setOpenModal] = useState(false);
+
+  const [taskName, setTaskName] = useState(task?.name || '');
+  const [taskDescription, setTaskDescription] = useState(
+    task?.description || '',
+  );
+  const [taskImportance, setTaskImportance] = useState(task?.importance || '');
+
+  useEffect(() => {
+    if (task) {
+      setTaskName(task.name);
+      setTaskDescription(task.description);
+      setTaskImportance(task.importance);
+    } else {
+      setTaskName('');
+      setTaskDescription('');
+      setTaskImportance('');
+    }
+  }, [task, openModal]);
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const formData = new FormData(e.currentTarget);
-    const name = formData.get('task-name') as string;
-    const description = formData.get('task-description') as string;
-    const importance = formData.get('task-importance') as string;
 
-    const newTask = {
-      id: uuidv4(),
-      name,
-      description,
-      importance,
+    const updatedTask = {
+      id: task?.id || uuidv4(),
+      name: taskName,
+      description: taskDescription,
+      importance: taskImportance,
     };
 
-    onSave(newTask);
-    setOpen(false);
+    onSave(updatedTask);
+    setOpenModal(false);
   };
 
   return (
-    <Dialog open={open} onOpenChange={setOpen}>
+    <Dialog open={openModal} onOpenChange={setOpenModal}>
       <DialogTrigger asChild>
-        <Button>Criar Tarefa</Button>
+        <Button>{buttonName}</Button>
       </DialogTrigger>
       <DialogContent className='!max-w-sm'>
         <DialogHeader>
-          <DialogTitle>Criar Tarefa</DialogTitle>
-          <DialogDescription>
-            Crie suas tarefas e organize seu trabalho de forma eficiente.
-          </DialogDescription>
+          <DialogTitle>{title}</DialogTitle>
+          <DialogDescription>{description}</DialogDescription>
         </DialogHeader>
         <form onSubmit={handleSubmit} className='flex flex-col gap-4'>
           <div className='space-y-2'>
             <Label htmlFor='task-name'>Nome da Tarefa</Label>
             <Input
               type='text'
-              name='task-name'
               id='task-name'
               placeholder='Nome da tarefa'
+              value={taskName || ''}
+              onChange={e => {
+                const value = e.target.value;
+                setTaskName(value);
+              }}
             />
           </div>
           <div className='space-y-2'>
@@ -80,15 +106,22 @@ export function CreateTaskButton({
             </Label>
             <Textarea
               id='task-description'
-              name='task-description'
               maxLength={200}
               placeholder='Descreva a tarefa...'
               className='resize-none'
+              value={taskDescription || ''}
+              onChange={e => {
+                const value = e.target.value;
+                setTaskDescription(value);
+              }}
             />
           </div>
           <div className='space-y-2'>
             <Label htmlFor='task-importance'>Importância</Label>
-            <Select name='task-importance'>
+            <Select
+              value={taskImportance || ''}
+              onValueChange={setTaskImportance}
+            >
               <SelectTrigger id='task-importance' className='w-full'>
                 <SelectValue placeholder='Selecione a importância' />
               </SelectTrigger>
@@ -101,7 +134,11 @@ export function CreateTaskButton({
             </Select>
           </div>
           <DialogFooter>
-            <Button variant='secondary' onClick={() => setOpen(false)}>
+            <Button
+              type='button'
+              variant='secondary'
+              onClick={() => setOpenModal(false)}
+            >
               Cancelar
             </Button>
             <Button type='submit'>Salvar</Button>
