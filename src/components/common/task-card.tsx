@@ -10,7 +10,7 @@ import { Badge } from '../ui/badge';
 
 export function TaskCard() {
   return (
-    <Card className='h-80 w-72'>
+    <Card className='h-80 w-72 rounded-md'>
       <CardHeader className='flex flex-row items-center justify-between'>
         <CardTitle>Nome da tarefa</CardTitle>
         <Badge>Prioridade</Badge>
