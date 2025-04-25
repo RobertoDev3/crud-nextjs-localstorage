@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { TaskModal } from '@/components/common/task-modal';
+import { CreateTaskButton } from '@/components/common/create-task-button';
 import { TaskCard } from '@/components/common/task-card';
 
 export type TaskProps = {
@@ -22,7 +22,7 @@ export default function Home() {
   return (
     <main className='mx-auto flex max-w-7xl flex-col gap-4 p-4'>
       <section className='bg-accent flex justify-end rounded-md p-4'>
-        <TaskModal
+        <CreateTaskButton
           onSave={(newTask: TaskProps) => {
             const updatedTasks = [...tasks, newTask];
             localStorage.setItem('tasks', JSON.stringify(updatedTasks));

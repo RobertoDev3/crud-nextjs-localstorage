@@ -24,7 +24,11 @@ import {
 import { v4 as uuidv4 } from 'uuid';
 import { TaskProps } from '@/app/page';
 
-export function TaskModal({ onSave }: { onSave: (task: TaskProps) => void }) {
+export function CreateTaskButton({
+  onSave,
+}: {
+  onSave: (task: TaskProps) => void;
+}) {
   const [open, setOpen] = useState(false);
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {

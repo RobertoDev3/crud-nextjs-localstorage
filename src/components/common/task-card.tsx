@@ -28,7 +28,15 @@ export function TaskCard({
     <Card className='h-80 w-72 rounded-md'>
       <CardHeader className='flex flex-row items-center justify-between'>
         <CardTitle>{name}</CardTitle>
-        <Badge>{importance}</Badge>
+        {importance === 'low' ? (
+          <Badge className='bg-green-100 text-green-700'>Baixa</Badge>
+        ) : importance === 'medium' ? (
+          <Badge className='bg-yellow-100 text-yellow-700'>Média</Badge>
+        ) : importance === 'high' ? (
+          <Badge className='bg-orange-400 text-gray-900'>Alta</Badge>
+        ) : (
+          <Badge className='bg-red-600 text-gray-900'>Urgente</Badge>
+        )}
       </CardHeader>
       <CardContent className='flex-1'>{description}</CardContent>
       <CardFooter className='justify-end gap-4'>
