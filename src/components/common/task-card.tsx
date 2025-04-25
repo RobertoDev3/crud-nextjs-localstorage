@@ -8,16 +8,22 @@ import {
 import { Button } from '../ui/button';
 import { Badge } from '../ui/badge';
 
-export function TaskCard() {
+export function TaskCard({
+  name,
+  description,
+  importance,
+}: {
+  name: string;
+  description: string;
+  importance: string;
+}) {
   return (
     <Card className='h-80 w-72 rounded-md'>
       <CardHeader className='flex flex-row items-center justify-between'>
-        <CardTitle>Nome da tarefa</CardTitle>
-        <Badge>Prioridade</Badge>
+        <CardTitle>{name}</CardTitle>
+        <Badge>{importance}</Badge>
       </CardHeader>
-      <CardContent className='flex-1'>
-        Oque foi escrito no campo de texto
-      </CardContent>
+      <CardContent className='flex-1'>{description}</CardContent>
       <CardFooter className='justify-end gap-4'>
         <Button>Editar</Button>
         <Button variant='destructive'>Deletar</Button>
