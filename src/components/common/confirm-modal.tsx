@@ -44,7 +44,16 @@ export function ConfirmModal({
           <Button variant='secondary' onClick={() => setOpen(false)}>
             Cancelar
           </Button>
-          <Button onClick={onConfirm}>Confirmar</Button>
+          <Button
+            onClick={() => {
+              setOpen(false);
+              setTimeout(() => {
+                onConfirm();
+              }, 100);
+            }}
+          >
+            Confirmar
+          </Button>
         </DialogFooter>
       </DialogContent>
     </Dialog>
