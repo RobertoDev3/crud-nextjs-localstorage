@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import '@/styles/globals.css';
 import { ThemeProvider } from '@/providers/theme-provider';
-import { Nav } from '@/components/layout/nav';
+import { Header } from '@/components/layout/header';
 
 export const metadata: Metadata = {
   title: 'Crud Next.js Localstorage',
@@ -22,7 +22,7 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <Nav />
+          <Header />
           {children}
         </ThemeProvider>
       </body>
