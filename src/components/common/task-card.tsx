@@ -9,6 +9,7 @@ import { Badge } from '../ui/badge';
 import { ConfirmModal } from './confirm-modal';
 import { TaskFormButton } from './task-form-button';
 import { TaskProps } from '@/app/page';
+import { cn } from '@/lib/utils';
 
 type TaskCardProps = {
   id: string;
@@ -30,7 +31,9 @@ export function TaskCard({
   return (
     <Card className='h-80 w-72 rounded-md'>
       <CardHeader className='flex flex-row items-center justify-between'>
-        <CardTitle>{name}</CardTitle>
+        <CardTitle className='line-clamp-2 break-words capitalize'>
+          {name}
+        </CardTitle>
         {importance === 'low' ? (
           <Badge className='bg-green-100 text-green-700'>Baixa</Badge>
         ) : importance === 'medium' ? (
@@ -41,7 +44,14 @@ export function TaskCard({
           <Badge className='bg-red-600 text-gray-900'>Urgente</Badge>
         )}
       </CardHeader>
-      <CardContent className='flex-1'>{description}</CardContent>
+      <CardContent
+        className={cn(
+          'mx-1.5 flex-1 overflow-auto px-4.5 break-words whitespace-pre-wrap',
+          '[&::-webkit-scrollbar-track]:bg-secondary [&::-webkit-scrollbar]:w-1.5 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb]:bg-gray-400 [&::-webkit-scrollbar-track]:rounded-full',
+        )}
+      >
+        {description}
+      </CardContent>
       <CardFooter className='justify-end gap-4'>
         <TaskFormButton
           onSave={updatedTask => onEdit(updatedTask)}

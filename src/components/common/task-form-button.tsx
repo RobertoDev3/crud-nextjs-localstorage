@@ -91,6 +91,7 @@ export function TaskFormButton({
               id='task-name'
               placeholder='Nome da tarefa'
               value={taskName || ''}
+              maxLength={32}
               onChange={e => {
                 const value = e.target.value;
                 setTaskName(value);
