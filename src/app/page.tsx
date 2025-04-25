@@ -24,19 +24,25 @@ export default function Home() {
       <section className='bg-accent flex justify-end rounded-md p-4'>
         <TaskModal
           onSave={(newTask: TaskProps) => {
-            const updated = [...tasks, newTask];
-            localStorage.setItem('tasks', JSON.stringify(updated));
-            setTasks(updated);
+            const updatedTasks = [...tasks, newTask];
+            localStorage.setItem('tasks', JSON.stringify(updatedTasks));
+            setTasks(updatedTasks);
           }}
         />
       </section>
       <section className='flex flex-wrap justify-center gap-4'>
-        {tasks.map((task, i) => (
+        {tasks.map(task => (
           <TaskCard
-            key={i}
+            key={task.id}
+            id={task.id}
             name={task.name}
             description={task.description}
             importance={task.importance}
+            onDelete={() => {
+              const updatedTasks = tasks.filter(t => t.id !== task.id);
+              localStorage.setItem('tasks', JSON.stringify(updatedTasks));
+              setTasks(updatedTasks);
+            }}
           />
         ))}
       </section>

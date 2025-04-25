@@ -26,16 +26,13 @@ import { TaskProps } from '@/app/page';
 
 export function TaskModal({ onSave }: { onSave: (task: TaskProps) => void }) {
   const [open, setOpen] = useState(false);
-  const [importance, setImportance] = useState('');
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const form = e.currentTarget as HTMLFormElement;
-    const name = (form.elements.namedItem('task-name') as HTMLInputElement)
-      .value;
-    const description = (
-      form.elements.namedItem('task-description') as HTMLTextAreaElement
-    ).value;
+    const formData = new FormData(e.currentTarget);
+    const name = formData.get('task-name') as string;
+    const description = formData.get('task-description') as string;
+    const importance = formData.get('task-importance') as string;
 
     const newTask = {
       id: uuidv4(),
@@ -46,8 +43,6 @@ export function TaskModal({ onSave }: { onSave: (task: TaskProps) => void }) {
 
     onSave(newTask);
     setOpen(false);
-    form.reset();
-    setImportance('');
   };
 
   return (
@@ -65,26 +60,31 @@ export function TaskModal({ onSave }: { onSave: (task: TaskProps) => void }) {
         <form onSubmit={handleSubmit} className='flex flex-col gap-4'>
           <div className='space-y-2'>
             <Label htmlFor='task-name'>Nome da Tarefa</Label>
-            <Input type='text' name='task-name' id='task-name' required />
+            <Input
+              type='text'
+              name='task-name'
+              id='task-name'
+              placeholder='Nome da tarefa'
+            />
           </div>
           <div className='space-y-2'>
             <Label htmlFor='task-description'>
               Descrição{' '}
               <span className='text-muted-foreground text-xs'>
-                (máximo 200 caracteres)
+                &#40;máximo 200 caracteres&#41;
               </span>
             </Label>
             <Textarea
               id='task-description'
               name='task-description'
               maxLength={200}
-              required
+              placeholder='Descreva a tarefa...'
               className='resize-none'
             />
           </div>
           <div className='space-y-2'>
             <Label htmlFor='task-importance'>Importância</Label>
-            <Select onValueChange={setImportance}>
+            <Select name='task-importance'>
               <SelectTrigger id='task-importance' className='w-full'>
                 <SelectValue placeholder='Selecione a importância' />
               </SelectTrigger>
@@ -97,6 +97,9 @@ export function TaskModal({ onSave }: { onSave: (task: TaskProps) => void }) {
             </Select>
           </div>
           <DialogFooter>
+            <Button variant='secondary' onClick={() => setOpen(false)}>
+              Cancelar
+            </Button>
             <Button type='submit'>Salvar</Button>
           </DialogFooter>
         </form>
