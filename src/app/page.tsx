@@ -45,20 +45,21 @@ export default function Home() {
         />
       </section>
       <section className='grid grid-cols-1 gap-4 self-center md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4'>
-        <AnimatePresence>
+        <AnimatePresence mode='popLayout'>
           {tasks.map((task, index) => (
             <motion.div
               key={task.id}
               layout
               initial={{ opacity: 0, translateY: 30, scale: 1 }}
               animate={{ opacity: 1, translateY: 0, scale: 1 }}
-              exit={{ opacity: 0, translateY: 20, scale: 0.9 }}
+              exit={{ opacity: 0, translateY: 20, scale: 1 }}
               transition={{
-                duration: 0.4,
+                duration: 0.3,
                 delay: index * 0.1,
                 type: 'spring',
                 stiffness: 100,
               }}
+              style={{ position: 'relative' }}
             >
               <TaskCard
                 id={task.id}
