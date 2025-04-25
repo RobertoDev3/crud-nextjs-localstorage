@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import { TaskFormButton } from '@/components/common/task-form-button';
 import { TaskCard } from '@/components/common/task-card';
 import { buttonVariants } from '@/components/ui/button';
+import { AnimatePresence, motion } from 'framer-motion';
 
 export type TaskProps = {
   id: string;
@@ -44,27 +45,42 @@ export default function Home() {
         />
       </section>
       <section className='grid grid-cols-1 gap-4 self-center md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4'>
-        {tasks.map(task => (
-          <TaskCard
-            key={task.id}
-            id={task.id}
-            name={task.name}
-            description={task.description}
-            importance={task.importance}
-            onEdit={updatedTask => {
-              const updatedTasks = tasks.map(task =>
-                task.id === updatedTask.id ? updatedTask : task,
-              );
-              localStorage.setItem('tasks', JSON.stringify(updatedTasks));
-              setTasks(updatedTasks);
-            }}
-            onDelete={(id: string) => {
-              const updatedTasks = tasks.filter(t => t.id !== id);
-              localStorage.setItem('tasks', JSON.stringify(updatedTasks));
-              setTasks(updatedTasks);
-            }}
-          />
-        ))}
+        <AnimatePresence>
+          {tasks.map((task, index) => (
+            <motion.div
+              key={task.id}
+              layout
+              initial={{ opacity: 0, translateY: 30, scale: 1 }}
+              animate={{ opacity: 1, translateY: 0, scale: 1 }}
+              exit={{ opacity: 0, translateY: 20, scale: 0.9 }}
+              transition={{
+                duration: 0.4,
+                delay: index * 0.1,
+                type: 'spring',
+                stiffness: 100,
+              }}
+            >
+              <TaskCard
+                id={task.id}
+                name={task.name}
+                description={task.description}
+                importance={task.importance}
+                onEdit={updatedTask => {
+                  const updatedTasks = tasks.map(task =>
+                    task.id === updatedTask.id ? updatedTask : task,
+                  );
+                  localStorage.setItem('tasks', JSON.stringify(updatedTasks));
+                  setTasks(updatedTasks);
+                }}
+                onDelete={(id: string) => {
+                  const updatedTasks = tasks.filter(t => t.id !== id);
+                  localStorage.setItem('tasks', JSON.stringify(updatedTasks));
+                  setTasks(updatedTasks);
+                }}
+              />
+            </motion.div>
+          ))}
+        </AnimatePresence>
       </section>
     </main>
   );
