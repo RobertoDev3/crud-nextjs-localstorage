@@ -109,7 +109,7 @@ export function TaskFormButton({
               id='task-description'
               maxLength={200}
               placeholder='Descreva a tarefa...'
-              className='resize-none text-justify break-keep'
+              className='resize-none break-keep'
               value={taskDescription || ''}
               onChange={e => {
                 const value = e.target.value;
