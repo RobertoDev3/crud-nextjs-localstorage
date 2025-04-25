@@ -85,7 +85,12 @@ export function TaskFormButton({
         </DialogHeader>
         <form onSubmit={handleSubmit} className='flex flex-col gap-4'>
           <div className='space-y-2'>
-            <Label htmlFor='task-name'>Nome da Tarefa</Label>
+            <Label htmlFor='task-name'>
+              Nome da Tarefa
+              <span className='text-muted-foreground text-xs'>
+                &#40;máximo 32 caracteres&#41;
+              </span>
+            </Label>
             <Input
               type='text'
               id='task-name'
@@ -102,12 +107,12 @@ export function TaskFormButton({
             <Label htmlFor='task-description'>
               Descrição{' '}
               <span className='text-muted-foreground text-xs'>
-                &#40;máximo 200 caracteres&#41;
+                &#40;máximo 300 caracteres&#41;
               </span>
             </Label>
             <Textarea
               id='task-description'
-              maxLength={200}
+              maxLength={300}
               placeholder='Descreva a tarefa...'
               className='resize-none break-keep'
               value={taskDescription || ''}
