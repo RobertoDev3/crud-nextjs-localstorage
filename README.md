@@ -1,10 +1,11 @@
-# CRUD com Next.js e LocalStorage
+# CRUD com Next.js, TypeScript e LocalStorage
 
-Este projeto é um exemplo de aplicação CRUD (Create, Read, Update, Delete) utilizando Next.js e LocalStorage para armazenamento de dados no navegador.
+Este projeto é um exemplo de aplicação CRUD (Create, Read, Update, Delete) utilizando Next.js, TypeScript e LocalStorage para armazenamento de dados no navegador.
 
 ## Tecnologias Utilizadas
 
 - **[Next.js](https://nextjs.org/)**: Framework React para renderização do lado do servidor e geração de sites estáticos.
+- **[TypeScript](https://www.typescriptlang.org/)**: Superset do JavaScript que adiciona tipagem estática ao código.
 - **LocalStorage**: Armazenamento de dados no navegador.
 - **[Tailwind CSS](https://tailwindcss.com/)**: Framework CSS baseado em utilitários para estilizar a aplicação.
 - **[Framer Motion](https://www.framer.com/motion/)**: Biblioteca para animações e transições suaves.
@@ -32,15 +33,19 @@ Antes de rodar o projeto, certifique-se de ter instalado:
 
    - Yarn é utilizado como gerenciador de pacotes neste projeto. Ele simplifica o gerenciamento de dependências e oferece instalações mais rápidas em comparação ao npm.
 
-2. **Tailwind CSS**:
+2. **TypeScript**:
+
+   - TypeScript é usado para adicionar tipagem estática ao código, ajudando a evitar erros e melhorar a manutenção do projeto.
+
+3. **Tailwind CSS**:
 
    - Tailwind CSS é usado para estilizar a aplicação. É um framework CSS baseado em utilitários que permite um desenvolvimento rápido de interfaces com classes pré-definidas.
 
-3. **Framer Motion**:
+4. **Framer Motion**:
 
    - Framer Motion é integrado ao projeto para lidar com animações e transições. Ele fornece uma API declarativa para criar animações suaves e complexas.
 
-4. **shadcn**:
+5. **shadcn**:
 
    - shadcn é uma coleção de componentes UI construídos com Radix UI e Tailwind CSS. Ele oferece uma base sólida para criar interfaces acessíveis e personalizáveis, permitindo que os desenvolvedores adaptem os componentes às necessidades específicas do projeto.
 
@@ -94,5 +99,4 @@ Este projeto está licenciado sob a licença [MIT](https://opensource.org/licens
 
 ---
 
-Feito por Roberto Teixeira.
-Siga-me no [LinkedIn](https://www.linkedin.com/in/robertotda/) e no [GitHub](https://github.com/RobertoDev3).
+Feito por Roberto Teixeira. Siga-me no [LinkedIn](https://www.linkedin.com/in/robertotda/) e no [GitHub](https://github.com/RobertoDev3).
