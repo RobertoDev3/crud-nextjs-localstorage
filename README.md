@@ -1,34 +1,98 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# CRUD com Next.js e LocalStorage
 
-## Getting Started
+Este projeto é um exemplo de aplicação CRUD (Create, Read, Update, Delete) utilizando Next.js e LocalStorage para armazenamento de dados no navegador.
 
-First, run the development server:
+## Tecnologias Utilizadas
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- **[Next.js](https://nextjs.org/)**: Framework React para renderização do lado do servidor e geração de sites estáticos.
+- **LocalStorage**: Armazenamento de dados no navegador.
+- **[Tailwind CSS](https://tailwindcss.com/)**: Framework CSS baseado em utilitários para estilizar a aplicação.
+- **[Framer Motion](https://www.framer.com/motion/)**: Biblioteca para animações e transições suaves.
+- **[shadcn/ui](https://ui.shadcn.dev/)**: Coleção de componentes UI construídos com Radix UI e Tailwind CSS.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Funcionalidades
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- Adicionar novos itens.
+- Listar itens armazenados.
+- Editar itens existentes.
+- Remover itens.
 
-## Learn More
+## Pré-requisitos
 
-To learn more about Next.js, take a look at the following resources:
+Antes de rodar o projeto, certifique-se de ter instalado:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- [Node.js](https://nodejs.org/) (versão 18 ou superior)
+- [Yarn](https://classic.yarnpkg.com/lang/en/) (versão 1.22 ou superior)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Documentação do Projeto
 
-## Deploy on Vercel
+### Dependências e Ferramentas Utilizadas
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+1. **Yarn**:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+   - Yarn é utilizado como gerenciador de pacotes neste projeto. Ele simplifica o gerenciamento de dependências e oferece instalações mais rápidas em comparação ao npm.
+
+2. **Tailwind CSS**:
+
+   - Tailwind CSS é usado para estilizar a aplicação. É um framework CSS baseado em utilitários que permite um desenvolvimento rápido de interfaces com classes pré-definidas.
+
+3. **Framer Motion**:
+
+   - Framer Motion é integrado ao projeto para lidar com animações e transições. Ele fornece uma API declarativa para criar animações suaves e complexas.
+
+4. **shadcn**:
+
+   - shadcn é uma coleção de componentes UI construídos com Radix UI e Tailwind CSS. Ele oferece uma base sólida para criar interfaces acessíveis e personalizáveis, permitindo que os desenvolvedores adaptem os componentes às necessidades específicas do projeto.
+
+### Funcionalidades Implementadas
+
+- Operações CRUD utilizando LocalStorage.
+- Design responsivo com Tailwind CSS.
+- Animações e transições suaves com Framer Motion.
+
+## Como Executar o Projeto
+
+1. Clone o repositório:
+   ```bash
+   git clone https://github.com/seu-usuario/crud-nextjs-localstorage.git
+   ```
+2. Acesse o diretório do projeto:
+   ```bash
+   cd crud-nextjs-localstorage
+   ```
+3. Instale as dependências:
+   ```bash
+   yarn install
+   ```
+4. Inicie o servidor de desenvolvimento:
+   ```bash
+   yarn dev
+   ```
+5. Acesse o projeto no navegador:
+   ```
+   http://localhost:3000
+   ```
+
+## Estrutura do Projeto
+
+- **/src/app**: Contém as páginas principais da aplicação, como layout e páginas de erro.
+- **/src/components**: Componentes reutilizáveis organizados em subpastas:
+  - **common**: Componentes genéricos como botões, modais e cartões.
+  - **layout**: Componentes relacionados ao layout, como o cabeçalho.
+  - **ui**: Componentes de interface do usuário, como inputs, selects e diálogos.
+- **/src/lib**: Funções utilitárias e helpers.
+- **/src/providers**: Provedores de contexto ou estado global.
+- **/src/styles**: Estilos globais e configurações de CSS.
+
+## Contribuição
+
+Contribuições são bem-vindas! Sinta-se à vontade para abrir issues ou enviar pull requests.
+
+## Licença
+
+Este projeto está licenciado sob a licença [MIT](https://opensource.org/licenses/MIT).
+
+---
+
+Feito por Roberto Teixeira.
+Siga-me no [LinkedIn](https://www.linkedin.com/in/robertotda/) e no [GitHub](https://github.com/RobertoDev3).
