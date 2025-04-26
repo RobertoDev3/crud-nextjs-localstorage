@@ -57,6 +57,8 @@ Antes de rodar o projeto, certifique-se de ter instalado:
 
 ## Como Executar o Projeto
 
+Acesse o projeto hospedado na vercel [clicando aqui](https://crud-nextjs-localstorage-8hzu.vercel.app) ou siga os passos abaixo para rodá-lo localmente:
+
 1. Clone o repositório:
    ```bash
    git clone https://github.com/seu-usuario/crud-nextjs-localstorage.git
