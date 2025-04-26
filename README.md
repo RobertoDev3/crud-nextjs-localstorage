@@ -21,8 +21,8 @@ Este projeto é um exemplo de aplicação CRUD (Create, Read, Update, Delete) ut
 
 Antes de rodar o projeto, certifique-se de ter instalado:
 
-- [Node.js](https://nodejs.org/) (versão 18 ou superior)
-- [Yarn](https://classic.yarnpkg.com/lang/en/) (versão 1.22 ou superior)
+- [Node.js](https://nodejs.org/) (versão 20 ou superior)
+- [Yarn](https://classic.yarnpkg.com/lang/en/) (versão 1.22.22 ou superior)
 
 ## Documentação do Projeto
 
